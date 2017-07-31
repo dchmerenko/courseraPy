@@ -1,0 +1,3 @@
+st = list(input())
+
+print('*'.join(st))

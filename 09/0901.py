@@ -1,26 +1,19 @@
-# class Matrix
+from sys import stdin
+from copy import deepcopy
 
 
 class Matrix:
-    def __init__(self, *args):
-        for arg in args:
-            self.row = arg[:]
-    # def __str__(self):
-    #     sMatrix = list()
-    #     for r in self.row:
-    #         sRow = '\t'.join(map(str, r))
-    #         sMatrix.append(sRow)
-    #     return '\n'.join(sMatrix)
+    def __init__(self, lst):
+        self.m = deepcopy(lst)
 
     def __str__(self):
-        return '\n'.join(map(lambda x: '\t'.join(map(str, x)), self.row))
+        rows = []
+        for row in self.m:
+            rows.append('\t'.join(map(str, row)))
+        return '\n'.join(rows)
 
     def size(self):
-        return len(self.row), len(self.row[0])
+        return len(self.m), len(self.m[0])
 
-m = Matrix([[1, 0], [0, 1]])
 
-print(m.row[0])
-print(m.row[1])
-print(m.size())
-print(m)
+exec(stdin.read())

@@ -9,6 +9,10 @@ class MatrixError(BaseException):
 
 
 class Matrix:
+    @staticmethod
+    def transposed(m):
+        return Matrix(list(map(list, zip(*m.m))))
+
     def __init__(self, lst):
         self.m = deepcopy(lst)
 
@@ -46,7 +50,6 @@ class Matrix:
             for i in range(len(m)):
                 for j in range(i + 1, len(m[0])):
                     m[j][i], m[i][j] = m[i][j], m[j][i]
-
         # транспонирование прямоугольной матрицы rows х cols
         rows = self.size()[0]
         cols = self.size()[1]
@@ -68,8 +71,6 @@ class Matrix:
             # добавляем в конец строку из rows элементов cols - rows раз
             for i in range(cols - rows):
                 self.m.extend([[0] * cols])
-            print('rows < cols\nextended m')
-            print(m)
             # транспонируем прямоугольную матрицу
             transform_square(self.m)
             # удаляем из всех строк cols - rows последних элементов
@@ -78,22 +79,4 @@ class Matrix:
                     row.pop()
         return self
 
-# exec(stdin.read())
-
-# m1 = Matrix([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
-# m2 = Matrix([[0, 1, 0], [20, 0, -1], [-1, -2, 0]])
-# print(m1 + m2)
-#
-# m2 = Matrix([[0, 1, 0], [20, 0, -1]])
-# try:
-#     m = m1 + m2
-#     print('WA\n' + str(m))
-# except MatrixError as e:
-#     print(e.matrix1)
-#     print(e.matrix2)
-
-m = Matrix([[10, 10], [0, 0], [1, 1]])
-print(m)
-m1 = m.transpose()
-print(m)
-print(m1)
+exec(stdin.read())
